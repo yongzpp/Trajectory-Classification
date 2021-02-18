@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  model: 
+    build: ./model 
+    stdin_open: true
+    tty: true
+    links: 
+      - db:database
+    volumes:
+       # - type: bind
+       #   source: /src/files
+       #   target: /src/files
+      - ./model/src:/src
+    depends_on: 
+        - db
+    ports:
+      - 8887:8887
+  db:
+    build: ./db
+    ports:
+      - 3308:3306
+    environment: 
+      MYSQL_ROOT_PASSWORD: root 
+    volumes:
+      - ./db/app:/home
+    cap_add:
+      - SYS_NICE
+
+  annotator: 
+    build: ./annotator
+    ports: 
+      - 8050:8050
+    links: 
+      - db
+    volumes:
+      - ./annotator/app:/app
+      - ./annotator/csv:/csv
+    depends_on: 
+        - db
+    
