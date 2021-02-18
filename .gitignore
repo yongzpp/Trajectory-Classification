@@ -1,2 +1,9 @@
-  model/src/lstm_cluster/test_models_and_results
-model/src/lstm_cluster/data/
+db/datay.sql
+model/src/synthetic/SG_origin_flights.csv
+model/src/lstm_cluster/test_models_and_results
+model/src/lstm_cluster/data
+model/src/logs/
+
+model/src/Test_Data.csv
+model/src/Export_synthetic_results.ipynb
+model/src/.ipynb_checkpoints/
