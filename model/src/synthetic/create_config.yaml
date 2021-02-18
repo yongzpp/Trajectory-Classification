@@ -1,0 +1,29 @@
+training: !!bool "true"
+device: "cuda"
+
+
+preprocess:
+    data: 
+        tot_stages: 6
+        file_name: 'synthetic/SG_origin_flights.csv'
+        flight_counts: [22, 31, 35] #to filter the dests that we want
+        airports_lat_lon: {'Singapore Changi Airport':[1.36, 103.99], 'Jeddah King Abdulaziz International Airport':[21.7, 39.2], 'Christchurch International Airport':[-43.5, 172.5], 'Angeles City Clark International Airport': [15.2, 120.6], 'Zurich Airport':[47.5, 8.55]} #to interpolate routes to a fixed start/end pt 
+        start_end_min_frac_to_drop: 0.05 #remove timestamps at the start/end of trajectory after combining segments and interpolating
+        start_end_max_frac_to_drop: 0.1
+        frac_to_remove: 0.1 #remove a block of timestamps
+        num_choices: 50 #number of rows for each combination
+        num_ts: 50 #length of each route
+        lat_lon_noise_mean: 0 #normally generate noise for the attributes for each point
+        lat_lon_noise_sd: 1
+        alt_noise_mean: 0
+        alt_noise_sd: 100
+        head_spd_noise_mean: 0
+        head_spd_noise_sd: 10
+        min_num: 10 #randomly removing points in every trajectory
+        max_num: 15
+    norm:
+        max_alt: 43000
+        max_lat: 90
+        max_lon: 180
+        max_head: 360
+        max_spd: 930

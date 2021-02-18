@@ -1,0 +1,35 @@
+training: !!bool "true"
+device: "cuda"
+
+data:
+    max_len: 100
+    features: 6
+    max_alt: 43000
+    max_lat: 90
+    max_lon: 180
+    max_head: 360
+    max_spd: 930
+    use_synthetic: True #flag to toggle between using synthetic or actual data
+    min_num: 20 #remove tracks with no of pts less than this number (for actual data only)
+    min_flights: 40
+    max_flights: 400
+---
+model:
+    hidden_layers: 2
+    hidden_size: 128
+    epochs: 50
+    batch_size: 128
+    seed: 123
+    lr: 0.001
+    auto_lr: False
+    enc_dropout: 0
+    dec_dropout: 0
+    teacher_forcing: 0
+    dir_path: './logs/'
+    model_directory: 'best_model.ckpt'
+
+---
+kube:
+    use_kube: !!bool "false"
+    bucket : 'digitalhub'
+    s3_path : 'flight_data'
