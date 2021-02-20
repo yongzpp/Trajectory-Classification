@@ -1,4 +1,4 @@
-# Sequence Classification
+# Trajectory Classification
 
 ## Task Description
 
