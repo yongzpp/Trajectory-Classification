@@ -24,7 +24,7 @@ The model must be able to correctly predict the transition point between points 
 
 With reference to the image representing the workflow above, docker will be used to contain the annotator, database and model containers. Data will be synthesised in the model container, which will be stored in the database container. The model in the model container will retrieve the corresponding data from the database container, train and make predictions. The predictions, together with the actual data from the database container, will be fed into the annotator container for visualisation on the front-end for stakeholders.
 
-## Input/ Output
+## Input/Output
 
 The inputs will be sql tables. The Entity Relationship (ER) diagram below shows how the sql tables are connected to one another and the tables following it contain a brief description of each column.
 
